@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>T Site | IAR ICF 文件详解 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"title":"IAR ICF 文件详解","path":"2018-07-25-IAR-ICF-文件详解.html"},"data":{"navigation":{"logo":{"text":"Tech Site by Vican LI","type":"link","path":"index.html"},"main":[{"text":"代码艺术","type":"label"},{"text":"编程命名规则和注释规范","type":"link","path":"2018-07-24-编程命名规则和注释规范.html","children":[{"text":"My Awesome Projects Page 1","type":"link","path":"wagger/to-html.html"}]},{"text":"Visiual Studio Code","type":"link","path":"2018-07-26-Visiual-Studio-Code.html"},{"text":"入门指南","type":"label"},{"text":"进阶教程","type":"label"},{"text":"2018-07-25-IAR-ICF-文件详解","type":"link","path":"2018-07-25-IAR-ICF-文件详解.html"},{"text":"SUPPORT AND FEEDBACK","type":"label"},{"text":"vicanli@willas-array.com","type":"link","path":"index.html"}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Tech Site by Vican LI</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <p>MCU：STM32F401RET6 </p>
+<p>BOARD：NUCLEO-F401RE </p>
+<p>ICF File Path：.\STM32Cube_FW_F4_V1.16.0\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\iar\linker</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">/###ICF### Section handled by ICF editor, don’t touch! ***/ </span><br><span class="line">/-Editor annotation file-/ </span><br><span class="line"><span class="comment">/* IcfEditorFile=”TOOLKITDIR\config\ide\IcfEditor\cortex_v1_0.xml” */</span> </span><br><span class="line">/-Specials-/ </span><br><span class="line">define symbol ICFEDIT_intvec_start = <span class="number">0x08000000</span>; </span><br><span class="line">/-Memory Regions-/ </span><br><span class="line">define symbol ICFEDIT_region_ROM_start = <span class="number">0x08000000</span>; </span><br><span class="line">define symbol ICFEDIT_region_ROM_end = <span class="number">0x0807FFFF</span>; </span><br><span class="line">define symbol ICFEDIT_region_RAM_start = <span class="number">0x20000000</span>; </span><br><span class="line">define symbol ICFEDIT_region_RAM_end = <span class="number">0x20017FFF</span>; </span><br><span class="line">/-Sizes-/ </span><br><span class="line">define symbol ICFEDIT_size_cstack = <span class="number">0x400</span>; </span><br><span class="line">define symbol ICFEDIT_size_heap = <span class="number">0x200</span>; </span><br><span class="line"><span class="comment">/** End of ICF editor section. ###ICF###*/</span></span><br><span class="line"></span><br><span class="line">define memory mem with size = <span class="number">4</span>G; </span><br><span class="line">define region ROM_region = mem:[from ICFEDIT_region_ROM_start to ICFEDIT_region_ROM_end]; </span><br><span class="line">define region RAM_region = mem:[from ICFEDIT_region_RAM_start to ICFEDIT_region_RAM_end];</span><br><span class="line"></span><br><span class="line">define block CSTACK with alignment = <span class="number">8</span>, size = ICFEDIT_size_cstack &#123; &#125;; </span><br><span class="line">define block HEAP with alignment = <span class="number">8</span>, size = ICFEDIT_size_heap &#123; &#125;;</span><br><span class="line"></span><br><span class="line">initialize by copy &#123; readwrite &#125;; </span><br><span class="line"><span class="keyword">do</span> <span class="keyword">not</span> initialize &#123; section .noinit &#125;;</span><br><span class="line"></span><br><span class="line">place at address mem:ICFEDIT_intvec_start &#123; readonly section .intvec &#125;;</span><br><span class="line"></span><br><span class="line">place in ROM_region &#123; readonly &#125;; </span><br><span class="line">place in RAM_region &#123; readwrite, </span><br><span class="line">block CSTACK, block HEAP &#125;;</span><br><span class="line"></span><br><span class="line">/###ICF### Section handled by ICF editor, don’t touch! ***/ </span><br><span class="line">/-Editor annotation file-/ </span><br><span class="line"><span class="comment">/* IcfEditorFile=”TOOLKITDIR\config\ide\IcfEditor\cortex_v1_0.xml” */</span> </span><br><span class="line">/-Specials-/ </span><br><span class="line">define symbol ICFEDIT_intvec_start = <span class="number">0x20000000</span>; </span><br><span class="line">/-Memory Regions-/ </span><br><span class="line">define symbol ICFEDIT_region_ROM_start = <span class="number">0x20000000</span>; </span><br><span class="line">define symbol ICFEDIT_region_ROM_end = <span class="number">0x2000FFFF</span>; </span><br><span class="line">define symbol ICFEDIT_region_RAM_start = <span class="number">0x20010000</span>; </span><br><span class="line">define symbol ICFEDIT_region_RAM_end = <span class="number">0x20017FFF</span>; </span><br><span class="line">/-Sizes-/ </span><br><span class="line">define symbol ICFEDIT_size_cstack = <span class="number">0x400</span>; </span><br><span class="line">define symbol ICFEDIT_size_heap = <span class="number">0x200</span>; </span><br><span class="line"><span class="comment">/** End of ICF editor section. ###ICF###*/</span></span><br><span class="line"></span><br><span class="line">define memory mem with size = <span class="number">4</span>G; </span><br><span class="line">define region ROM_region = mem:[from ICFEDIT_region_ROM_start to ICFEDIT_region_ROM_end]; </span><br><span class="line">define region RAM_region = mem:[from ICFEDIT_region_RAM_start to ICFEDIT_region_RAM_end];</span><br><span class="line"></span><br><span class="line">define block CSTACK with alignment = <span class="number">8</span>, size = ICFEDIT_size_cstack &#123; &#125;; </span><br><span class="line">define block HEAP with alignment = <span class="number">8</span>, size = ICFEDIT_size_heap &#123; &#125;;</span><br><span class="line"></span><br><span class="line">initialize by copy &#123; readwrite &#125;; </span><br><span class="line"><span class="keyword">do</span> <span class="keyword">not</span> initialize &#123; section .noinit &#125;;</span><br><span class="line"></span><br><span class="line">place at address mem:ICFEDIT_intvec_start &#123; readonly section .intvec &#125;;</span><br><span class="line"></span><br><span class="line">place in ROM_region &#123; readonly &#125;; </span><br><span class="line">place in RAM_region &#123; readwrite, </span><br><span class="line">block CSTACK, block HEAP &#125;;</span><br></pre></td></tr></table></figure>
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
